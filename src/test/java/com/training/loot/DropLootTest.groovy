@@ -10,10 +10,7 @@ class DropLootTest extends Specification {
         def hero = Mock(Hero)
 
         when:
-        def policy = Mock(LootDroppingPolicy) {
-            shouldBeDropped() >> true
-        }
-        def loot = new DropLoot(policy).forHero(hero)
+        def loot = Optional.empty() //TODO: execute logic for dropping loot -> new DropLoot()...
 
         then:
         loot.isPresent()
@@ -24,8 +21,7 @@ class DropLootTest extends Specification {
         def hero = Mock(Hero)
 
         when:
-        def policy = Mock(LootDroppingPolicy)
-        def loot = new DropLoot(policy).forHero(hero)
+        def loot = Optional.empty() //TODO: execute logic for dropping loot -> new DropLoot()...
 
         then:
         !loot.isPresent()

@@ -64,12 +64,14 @@ class OrdinaryHeroTest extends Specification {
     def "non-magical race should not be Wizard"() {
         given:
         def magicalProfession = Profession.WIZARD
+        def weapon = Weapon.WAND
 
         when:
         new OrdinaryHero.Builder()
                 .name("Gandalf")
                 .race(nonMagicalRace)
                 .profession(magicalProfession)
+                .weapon(weapon)
                 .build()
 
         then:
@@ -104,21 +106,34 @@ class OrdinaryHeroTest extends Specification {
         Race.ELF    | _
     }
 
-    def "Hero should have no weapon by default"() {
+    def "only Hobbit Thief can walk unarmed"() {
         given:
-        def name = "Frodo"
-        def race = Race.HOBBIT
-        def profession = Profession.THIEF
+        def weapon = null
 
         when:
-        def hero = new OrdinaryHero.Builder()
-                .name(name)
+        new OrdinaryHero.Builder()
+                .name("Gandalf")
                 .race(race)
                 .profession(profession)
+                .weapon(weapon)
                 .build()
 
         then:
-        !hero.weapon().isPresent()
+        thrown(HeroMustHaveWeapon)
+
+        where:
+        race        | profession
+        Race.MAN    | Profession.THIEF
+        Race.MAN    | Profession.WARRIOR
+        Race.MAN    | Profession.WIZARD
+        Race.ELF    | Profession.THIEF
+        Race.ELF    | Profession.WARRIOR
+        Race.ELF    | Profession.WIZARD
+        Race.ORC    | Profession.THIEF
+        Race.ORC    | Profession.WARRIOR
+        Race.DWARF  | Profession.THIEF
+        Race.DWARF  | Profession.WARRIOR
+        Race.HOBBIT | Profession.WARRIOR
     }
 
     def "should create armed Hero"() {
@@ -159,9 +174,7 @@ class OrdinaryHeroTest extends Specification {
         !hero.weapon()
 
         where:
-        name       | race        | profession
-        "Merry"    | Race.HOBBIT | Profession.THIEF
-        "Radagast" | Race.MAN    | Profession.DRUID
+        name    | race        | profession
+        "Merry" | Race.HOBBIT | Profession.THIEF
     }
-
 }

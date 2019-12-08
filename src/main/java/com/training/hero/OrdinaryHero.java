@@ -81,6 +81,10 @@ class OrdinaryHero implements Hero {
                 throw new HeroMustHaveProfession();
             }
 
+            if (weapon == null && !isHobbitThief(race, profession)) {
+                throw new HeroMustHaveWeapon(race);
+            }
+
             if (Profession.WIZARD.equals(profession) && isNonMagicalRace(race)) {
                 throw new NonMagicalRaceMustNotBeWizard(race);
             }
@@ -92,6 +96,10 @@ class OrdinaryHero implements Hero {
 
         private boolean isNameToShort(String name) {
             return name.length() < MIN_NAME_LENGTH;
+        }
+
+        private boolean isHobbitThief(Race race, Profession profession) {
+            return Race.HOBBIT.equals(race) && Profession.THIEF.equals(profession);
         }
 
         private static boolean isNonMagicalRace(Race race) {

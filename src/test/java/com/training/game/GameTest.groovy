@@ -14,7 +14,7 @@ class GameTest extends Specification {
         def generateMobs = Mock(GenerateMobs)
 
         when:
-        new Game(loadBitmaps, loadSounds, loadMap, loadHero, generateNpc, generateMobs).start()
+        def game = Mock(Game) //TODO: replace Mock with your implementation
 
         then: "bitmaps should be loaded"
         1 * loadBitmaps.load()

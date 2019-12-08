@@ -36,6 +36,8 @@ class OrdinaryHero implements Hero {
     }
 
     static class Builder {
+        private static final int MIN_NAME_LENGTH = 4;
+
         private String name;
         private Race race;
         private Profession profession;
@@ -67,7 +69,7 @@ class OrdinaryHero implements Hero {
         }
 
         private void validate() {
-            if (name == null || name.length() < 4) {
+            if (name == null || isNameToShort(name)) {
                 throw new ChosenWrongNameForHero(name);
             }
 
@@ -79,13 +81,25 @@ class OrdinaryHero implements Hero {
                 throw new HeroMustHaveProfession();
             }
 
-            if (Profession.WIZARD.equals(profession) && (Race.DWARF.equals(race) || Race.ORC.equals(race) || Race.HOBBIT.equals(race))) {
+            if (Profession.WIZARD.equals(profession) && isNonMagicalRace(race)) {
                 throw new NonMagicalRaceMustNotBeWizard(race);
             }
 
-            if (Weapon.TWO_HANDED_SWORD.equals(weapon) && (Race.ELF.equals(race) || Race.HOBBIT.equals(race))) {
+            if (Weapon.TWO_HANDED_SWORD.equals(weapon) && isToWeakForTwoHandedSword(race)) {
                 throw new WeaponIsTooHeavyForHero(weapon, race);
             }
+        }
+
+        private boolean isNameToShort(String name) {
+            return name.length() < MIN_NAME_LENGTH;
+        }
+
+        private static boolean isNonMagicalRace(Race race) {
+            return Race.DWARF.equals(race) || Race.ORC.equals(race) || Race.HOBBIT.equals(race);
+        }
+
+        private boolean isToWeakForTwoHandedSword(Race race) {
+            return Race.ELF.equals(race) || Race.HOBBIT.equals(race);
         }
     }
 }

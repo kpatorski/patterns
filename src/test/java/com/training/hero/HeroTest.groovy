@@ -2,16 +2,14 @@ package com.training.hero
 
 import spock.lang.Specification
 
-class OrdinaryHeroTest extends Specification {
+class HeroTest extends Specification {
 
     def "should not create Hero without name"() {
         given:
         def name = null
 
         when:
-        new OrdinaryHero.Builder()
-                .name(name)
-                .build()
+        def hero = Mock(Hero) //TODO: execute logic for creating new Hero
 
         then:
         thrown(ChosenWrongNameForHero)
@@ -19,7 +17,7 @@ class OrdinaryHeroTest extends Specification {
 
     def "should not create Hero with name shorter than 4 characters"() {
         when:
-        new OrdinaryHero.Builder().name(heroName).build()
+        def hero = Mock(Hero) //TODO: execute logic for creating new Hero
 
         then:
         thrown(ChosenWrongNameForHero)
@@ -37,10 +35,7 @@ class OrdinaryHeroTest extends Specification {
         def race = null
 
         when:
-        new OrdinaryHero.Builder()
-                .name("Gandalf")
-                .race(race)
-                .build()
+        def hero = Mock(Hero) //TODO: execute logic for creating new Hero
 
         then:
         thrown(HeroMustBeOneOfRaces)
@@ -51,11 +46,7 @@ class OrdinaryHeroTest extends Specification {
         def profession = null
 
         when:
-        new OrdinaryHero.Builder()
-                .name("Gimli")
-                .race(Race.DWARF)
-                .profession(profession)
-                .build()
+        def hero = Mock(Hero) //TODO: execute logic for creating new Hero
 
         then:
         thrown(HeroMustHaveProfession)
@@ -67,12 +58,7 @@ class OrdinaryHeroTest extends Specification {
         def weapon = Weapon.WAND
 
         when:
-        new OrdinaryHero.Builder()
-                .name("Gandalf")
-                .race(nonMagicalRace)
-                .profession(magicalProfession)
-                .weapon(weapon)
-                .build()
+        def hero = Mock(Hero) //TODO: execute logic for creating new Hero
 
         then:
         thrown(NonMagicalRaceMustNotBeWizard)
@@ -90,12 +76,7 @@ class OrdinaryHeroTest extends Specification {
         def profession = Profession.WARRIOR
 
         when:
-        new OrdinaryHero.Builder()
-                .name("Gandalf")
-                .race(race)
-                .profession(profession)
-                .weapon(weapon)
-                .build()
+        def hero = Mock(Hero) //TODO: execute logic for creating new Hero
 
         then:
         thrown(WeaponIsTooHeavyForHero)
@@ -111,12 +92,7 @@ class OrdinaryHeroTest extends Specification {
         def weapon = null
 
         when:
-        new OrdinaryHero.Builder()
-                .name("Gandalf")
-                .race(race)
-                .profession(profession)
-                .weapon(weapon)
-                .build()
+        def hero = Mock(Hero) //TODO: execute logic for creating new Hero
 
         then:
         thrown(HeroMustHaveWeapon)
@@ -138,12 +114,7 @@ class OrdinaryHeroTest extends Specification {
 
     def "should create armed Hero"() {
         when:
-        def hero = new OrdinaryHero.Builder()
-                .name(name)
-                .race(race)
-                .profession(profession)
-                .weapon(weapon)
-                .build()
+        def hero = Mock(Hero) //TODO: execute logic for creating new Hero -> def hero = ...
 
         then:
         hero.name() == name
@@ -161,11 +132,7 @@ class OrdinaryHeroTest extends Specification {
 
     def "should create unarmed Hero"() {
         when:
-        def hero = new OrdinaryHero.Builder()
-                .name(name)
-                .race(race)
-                .profession(profession)
-                .build()
+        def hero = Mock(Hero) //TODO: execute logic for creating new Hero -> def hero = ...
 
         then:
         hero.name() == name

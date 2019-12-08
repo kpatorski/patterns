@@ -5,13 +5,10 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DrunkWizard {
-    private SpellBook spellBook = new SpellBook();
+    private SpellBook spellBook = new SpellBook(); //found in trash
 
     void destroyTarget(Target target) {
-        while (!target.isDead()) {
-            SpellEffect spellEffect = spellBook.readPage(randomPage()).cast();
-            target.apply(spellEffect);
-        }
+        //TODO: Read the spellBook, cast the Spell and apply SpellEffects on Target, (make sure that every Spell was spoken)
     }
 
     private int randomPage() {

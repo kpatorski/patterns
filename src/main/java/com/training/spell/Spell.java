@@ -1,12 +1,7 @@
 package com.training.spell;
 
 interface Spell<T extends SpellEffect> {
-    default T cast() {
-        System.out.println(words());
-        return createEffect();
-    }
+    //T cast(); //TODO: uncomment and adjust method
 
-    String words();
-
-    T createEffect();
+    String words(); // every spell should be spoken
 }

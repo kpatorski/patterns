@@ -6,7 +6,7 @@ class OrcTest extends Specification {
 
     def "Orc Warrior should be able to kill all mobs"() {
         given: "enemies"
-        def dragon = new Dragon(new com.training.meleeatack.legacy.Dragon())
+        def dragon = null //TODO: replace value with your implementation
         def enemies = [new Ghoul(), new Vampire(), dragon, new Skeleton()] as List<Mob>
 
         and: "brave warrior"

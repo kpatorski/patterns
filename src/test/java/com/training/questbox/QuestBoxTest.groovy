@@ -2,6 +2,7 @@ package com.training.questbox
 
 import com.training.hero.Hero
 import com.training.hero.Race
+import com.training.questbox.equipment.Equipment
 import com.training.questbox.magicloot.MagicArmor
 import com.training.questbox.magicloot.MagicHelmet
 import com.training.questbox.magicloot.MagicLegs
@@ -11,8 +12,6 @@ import com.training.questbox.ordinaryloot.OrdinaryLegs
 import spock.lang.Specification
 
 class QuestBoxTest extends Specification {
-    def lootingPolicy = new LootGenerationPolicy()
-
     def "Hero that belongs to magical race and have level higher than 24 should be rewarded with `magic` equipment"() {
         given:
         def hero = Mock(Hero) {
@@ -21,7 +20,7 @@ class QuestBoxTest extends Specification {
         }
 
         when:
-        def equipment = new QuestBox(lootingPolicy).rewardForHero(hero)
+        def equipment = Mock(Equipment) // TODO: Implement logic for creating QuestBox's content -> new QuestBox()...
 
         then:
         equipment.items() as List == [new MagicHelmet(), new MagicArmor(), new MagicLegs()]
@@ -35,7 +34,7 @@ class QuestBoxTest extends Specification {
         }
 
         when:
-        def equipment = new QuestBox(lootingPolicy).rewardForHero(hero)
+        def equipment = Mock(Equipment) // TODO: Implement logic for creating QuestBox's content -> new QuestBox()...
 
         then:
         equipment.items() as List == [new OrdinaryHelmet(), new OrdinaryArmor(), new OrdinaryLegs()]
@@ -49,7 +48,7 @@ class QuestBoxTest extends Specification {
         }
 
         when:
-        def equipment = new QuestBox(lootingPolicy).rewardForHero(hero)
+        def equipment = Mock(Equipment) // TODO: Implement logic for creating QuestBox's content -> new QuestBox()...
 
         then:
         equipment.items() as List == [new OrdinaryHelmet(), new OrdinaryArmor(), new OrdinaryLegs()]
@@ -63,7 +62,7 @@ class QuestBoxTest extends Specification {
         }
 
         when:
-        def equipment = new QuestBox(lootingPolicy).rewardForHero(hero)
+        def equipment = Mock(Equipment) // TODO: Implement logic for creating QuestBox's content -> new QuestBox()...
 
         then:
         equipment.items() as List == [new OrdinaryHelmet(), new OrdinaryArmor(), new OrdinaryLegs()]

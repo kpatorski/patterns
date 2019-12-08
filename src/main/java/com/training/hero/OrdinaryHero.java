@@ -103,7 +103,7 @@ class OrdinaryHero implements Hero {
         }
 
         private static boolean isNonMagicalRace(Race race) {
-            return Race.DWARF.equals(race) || Race.ORC.equals(race) || Race.HOBBIT.equals(race);
+            return !Race.isMagical(race);
         }
 
         private boolean isToWeakForTwoHandedSword(Race race) {

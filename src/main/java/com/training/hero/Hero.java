@@ -2,7 +2,7 @@ package com.training.hero;
 
 import java.util.Optional;
 
-interface Hero {
+public interface Hero {
     String name();
 
     Race race();
@@ -10,4 +10,8 @@ interface Hero {
     Profession profession();
 
     Optional<Weapon> weapon();
+
+    default int level(){
+        return 1;
+    }
 }
